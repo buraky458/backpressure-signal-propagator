@@ -34,3 +34,10 @@ The deliberate trade-off: the propagator is transport-agnostic. It does not wrap
 ## Edge case
 
 Saturation is defined as `bufferSize >= highWaterMark`. When `highWaterMark` is `0`, the consumer is always saturated — there is no non-saturated state. This is intentional: a zero-capacity consumer can never accept more data, so "always saturated" is the honest signal. Do not set `highWaterMark` to `0` expecting a one-shot drain; use `destroy()` instead.
+
+## Design notes
+
+The window stores values eagerly rather than keeping running aggregates. Running
+sums drift with floating point over long streams, and recomputing from a small
+buffer is cheap enough that the drift is not worth the speed.
+
