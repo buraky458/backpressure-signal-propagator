@@ -1,6 +1,6 @@
 {
   "name": "backpressure-signal-propagator",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Exposes readable stream buffer pressure as a subscribable signal for upstream saturation propagation",
   "type": "module",
   "main": "src/index.js",
